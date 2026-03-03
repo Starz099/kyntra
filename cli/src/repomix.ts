@@ -20,7 +20,6 @@ export async function generateAIContext(gitRoot: string) {
       showLineNumbers: false,
       copyToClipboard: false,
       includeEmptyDirectories: false,
-      // Adding the specific missing properties from your error message:
       truncateBase64: true,
       includeFullDirectoryStructure: false,
       tokenCountTree: false,

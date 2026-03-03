@@ -1,1 +1,27 @@
 @import "tailwindcss";
+
+:root {
+  color-scheme: dark;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  background: var(--color-zinc-950);
+  color: var(--color-zinc-50);
+}
+
+.react-flow__attribution {
+  display: none;
+}
+
+.react-flow__edge.animated path {
+  animation-duration: 1.25s;
+}
+
+.react-flow__background {
+  opacity: 0.35;
+}
