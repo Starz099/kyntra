@@ -3,6 +3,8 @@ import fastifyStatic from "@fastify/static";
 import path from "path";
 import { fileURLToPath } from "url";
 import open from "open";
+import { findGitRoot } from "./git.js";
+import { getRepoFiles } from "./scanner.js";
 export const startServer = async () => {
   const fastify = Fastify();
 
@@ -21,7 +23,19 @@ export const startServer = async () => {
   // 2. Define API routes BEFORE the catch-all behavior
   // This ensures /api/graph isn't intercepted by the static file handler
   fastify.get("/api/graph", async () => {
-    return { nodes: [], edges: [] };
+    console.log("Received request for /api/graph");
+    const gitRoot = findGitRoot(process.cwd()); // Just to demonstrate usage; you can remove this line
+
+    const AllFiles: string[] = [];
+    if (gitRoot) {
+      console.log("Found Git root at:", gitRoot);
+      AllFiles.push(...getRepoFiles(gitRoot));
+      // AllFiles.forEach(file => {
+      //   console.log("Repo file:", file);
+      // });
+    }
+
+    return { nodes: [], edges: [], files: AllFiles }; // Placeholder response; replace with actual graph data
   });
 
   // 3. Handle SPA routing (redirecting 404s to index.html)
@@ -30,9 +44,9 @@ export const startServer = async () => {
   });
 
   try {
-    // Port 3000 might be busy if you're developing the web side; 
+    // Port 3000 might be busy if you're developing the web side;
     // consider using a unique port for Kyntra
-    await fastify.listen({ port: 3000, host: '0.0.0.0' }); 
+    await fastify.listen({ port: 3000, host: "0.0.0.0" });
     console.log("Server running at http://localhost:3000");
     await open("http://localhost:3000");
   } catch (err) {
