@@ -1,0 +1,1091 @@
+{
+  "nodes": [
+    {
+      "id": "src/app/api/boombot/download/route.ts",
+      "type": "fileNode",
+      "position": {
+        "x": 482.784149356379,
+        "y": 179.079466351643
+      },
+      "data": {
+        "label": "route.ts",
+        "fullPath": "src/app/api/boombot/download/route.ts",
+        "summary": "API endpoint for downloading the BoomBot package as a ZIP file using stream-based archiving.",
+        "symbols": [
+          {
+            "name": "GET",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/app/api/contact/route.ts",
+      "type": "fileNode",
+      "position": {
+        "x": 545.720240736957,
+        "y": 184.039712411352
+      },
+      "data": {
+        "label": "route.ts",
+        "fullPath": "src/app/api/contact/route.ts",
+        "summary": "API route for processing contact form submissions via Resend with Zod validation.",
+        "symbols": [
+          {
+            "name": "POST",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/app/api/visit/route.ts",
+      "type": "fileNode",
+      "position": {
+        "x": 417.859401391021,
+        "y": 348.621538158798
+      },
+      "data": {
+        "label": "route.ts",
+        "fullPath": "src/app/api/visit/route.ts",
+        "summary": "API endpoints for tracking and retrieving visitor counts with IP hashing and MongoDB storage.",
+        "symbols": [
+          {
+            "name": "GET",
+            "type": "function"
+          },
+          {
+            "name": "POST",
+            "type": "function"
+          },
+          {
+            "name": "getClientIp",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/app/projects/[projectId]/page.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 367.826690055666,
+        "y": 492.133797967972
+      },
+      "data": {
+        "label": "page.tsx",
+        "fullPath": "src/app/projects/[projectId]/page.tsx",
+        "summary": "Dynamic project detail page displaying metadata, demo videos, and technical stacks.",
+        "symbols": [
+          {
+            "name": "PageProps",
+            "type": "interface"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/components/BoomBot/BoomBot3D.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 726.337747327819,
+        "y": 35.1920280360917
+      },
+      "data": {
+        "label": "BoomBot3D.tsx",
+        "fullPath": "src/components/BoomBot/BoomBot3D.tsx",
+        "summary": "Main 3D character component using React Three Fiber, featuring cursor-following and drag-to-rotate mechanics.",
+        "symbols": [
+          {
+            "name": "BoomBot3D",
+            "type": "component"
+          },
+          {
+            "name": "LightingPreset",
+            "type": "type"
+          },
+          {
+            "name": "BoomBotController",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/components/BoomBot/BoomBotOverlayGate.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 672.358435499468,
+        "y": 315.288760876063
+      },
+      "data": {
+        "label": "BoomBotOverlayGate.tsx",
+        "fullPath": "src/components/BoomBot/BoomBotOverlayGate.tsx",
+        "summary": "Conditional wrapper that dynamically loads and displays the BoomBot 3D overlay based on user preference.",
+        "symbols": [
+          {
+            "name": "BoomBotOverlayGate",
+            "type": "component"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/components/ContactForm/ContactForm.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 193.15256343296,
+        "y": 279.316649325234
+      },
+      "data": {
+        "label": "ContactForm.tsx",
+        "fullPath": "src/components/ContactForm/ContactForm.tsx",
+        "summary": "Client-side contact form component with React Hook Form and Zod validation.",
+        "symbols": [
+          {
+            "name": "ContactFormData",
+            "type": "type"
+          },
+          {
+            "name": "onSubmit",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/components/ui/PackageTabs.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 550.513742412919,
+        "y": 597.265235845337
+      },
+      "data": {
+        "label": "PackageTabs.tsx",
+        "fullPath": "src/components/ui/PackageTabs.tsx",
+        "summary": "A tabbed interface for displaying installation commands for different package managers (npm, yarn, etc.).",
+        "symbols": [
+          {
+            "name": "PackageTabsProps",
+            "type": "interface"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/components/Navbar/navbar.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 379.542657563222,
+        "y": 326.004914024022
+      },
+      "data": {
+        "label": "navbar.tsx",
+        "fullPath": "src/components/Navbar/navbar.tsx",
+        "summary": "Navigation bar component containing the brand logo, links, theme switcher, and BoomBot toggle.",
+        "symbols": [
+          {
+            "name": "Navbar",
+            "type": "component"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/components/GithubContribution/Github.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 214.523288155817,
+        "y": 535.625851305401
+      },
+      "data": {
+        "label": "Github.tsx",
+        "fullPath": "src/components/GithubContribution/Github.tsx",
+        "summary": "Component that fetches and renders a 365-day rolling GitHub contribution graph.",
+        "symbols": [
+          {
+            "name": "ContributionItem",
+            "type": "type"
+          },
+          {
+            "name": "fetchData",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/lib/visitors.ts",
+      "type": "fileNode",
+      "position": {
+        "x": 655.66114853508,
+        "y": 476.23515086189
+      },
+      "data": {
+        "label": "visitors.ts",
+        "fullPath": "src/lib/visitors.ts",
+        "summary": "Helper functions for managing visitor data models and performing IP hashing for privacy.",
+        "symbols": [
+          {
+            "name": "getVisitorModel",
+            "type": "function"
+          },
+          {
+            "name": "hashIp",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/app/page.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 205.07339067081,
+        "y": 280.378603112996
+      },
+      "data": {
+        "label": "page.tsx",
+        "fullPath": "src/app/page.tsx",
+        "summary": "The main landing page assembling Hero, Projects, Skills, Socials, and GitHub contribution sections.",
+        "symbols": [
+          {
+            "name": "Home",
+            "type": "component"
+          }
+        ]
+      }
+    },
+    {
+      "id": "src/app/layout.tsx",
+      "type": "fileNode",
+      "position": {
+        "x": 265.143049845679,
+        "y": 155.943802542045
+      },
+      "data": {
+        "label": "layout.tsx",
+        "fullPath": "src/app/layout.tsx",
+        "summary": "Root layout file setting up global providers, fonts, navbar, and smooth scrolling with Lenis.",
+        "symbols": [
+          {
+            "name": "RootLayout",
+            "type": "component"
+          }
+        ]
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "e-src/app/api/boombot/download/route.ts-archiver",
+      "source": "src/app/api/boombot/download/route.ts",
+      "target": "archiver",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/boombot/download/route.ts-fs",
+      "source": "src/app/api/boombot/download/route.ts",
+      "target": "fs",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/boombot/download/route.ts-path",
+      "source": "src/app/api/boombot/download/route.ts",
+      "target": "path",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/boombot/download/route.ts-stream",
+      "source": "src/app/api/boombot/download/route.ts",
+      "target": "stream",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/contact/route.ts-next/server",
+      "source": "src/app/api/contact/route.ts",
+      "target": "next/server",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/contact/route.ts-zod",
+      "source": "src/app/api/contact/route.ts",
+      "target": "zod",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/contact/route.ts-resend",
+      "source": "src/app/api/contact/route.ts",
+      "target": "resend",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/visit/route.ts-next/server",
+      "source": "src/app/api/visit/route.ts",
+      "target": "next/server",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/visit/route.ts-next/headers",
+      "source": "src/app/api/visit/route.ts",
+      "target": "next/headers",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/visit/route.ts-next/cache",
+      "source": "src/app/api/visit/route.ts",
+      "target": "next/cache",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/api/visit/route.ts-@/lib/visitors",
+      "source": "src/app/api/visit/route.ts",
+      "target": "@/lib/visitors",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/projects/[projectId]/page.tsx-next/navigation",
+      "source": "src/app/projects/[projectId]/page.tsx",
+      "target": "next/navigation",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/projects/[projectId]/page.tsx-next/link",
+      "source": "src/app/projects/[projectId]/page.tsx",
+      "target": "next/link",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/projects/[projectId]/page.tsx-next-video",
+      "source": "src/app/projects/[projectId]/page.tsx",
+      "target": "next-video",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/projects/[projectId]/page.tsx-@/components/ui/Container",
+      "source": "src/app/projects/[projectId]/page.tsx",
+      "target": "@/components/ui/Container",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/projects/[projectId]/page.tsx-@/components/ui/separator",
+      "source": "src/app/projects/[projectId]/page.tsx",
+      "target": "@/components/ui/separator",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/projects/[projectId]/page.tsx-@/data/projects",
+      "source": "src/app/projects/[projectId]/page.tsx",
+      "target": "@/data/projects",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/projects/[projectId]/page.tsx-@/data/project-videos",
+      "source": "src/app/projects/[projectId]/page.tsx",
+      "target": "@/data/project-videos",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/BoomBot/BoomBot3D.tsx-react",
+      "source": "src/components/BoomBot/BoomBot3D.tsx",
+      "target": "react",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/BoomBot/BoomBot3D.tsx-@react-three/fiber",
+      "source": "src/components/BoomBot/BoomBot3D.tsx",
+      "target": "@react-three/fiber",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/BoomBot/BoomBot3D.tsx-@react-three/drei",
+      "source": "src/components/BoomBot/BoomBot3D.tsx",
+      "target": "@react-three/drei",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/BoomBot/BoomBotOverlayGate.tsx-react",
+      "source": "src/components/BoomBot/BoomBotOverlayGate.tsx",
+      "target": "react",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/BoomBot/BoomBotOverlayGate.tsx-next/dynamic",
+      "source": "src/components/BoomBot/BoomBotOverlayGate.tsx",
+      "target": "next/dynamic",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/BoomBot/BoomBotOverlayGate.tsx-./boombot-provider",
+      "source": "src/components/BoomBot/BoomBotOverlayGate.tsx",
+      "target": "./boombot-provider",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/BoomBot/BoomBotOverlayGate.tsx-./BoomBot3D",
+      "source": "src/components/BoomBot/BoomBotOverlayGate.tsx",
+      "target": "./BoomBot3D",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-react",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "react",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-react-hook-form",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "react-hook-form",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-@hookform/resolvers/zod",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "@hookform/resolvers/zod",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-zod",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "zod",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-@/components/ui/RippleButton",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "@/components/ui/RippleButton",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-@/components/ui/input",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "@/components/ui/input",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-@/components/ui/textarea",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "@/components/ui/textarea",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ContactForm/ContactForm.tsx-@/components/ui/label",
+      "source": "src/components/ContactForm/ContactForm.tsx",
+      "target": "@/components/ui/label",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ui/PackageTabs.tsx-lucide-react",
+      "source": "src/components/ui/PackageTabs.tsx",
+      "target": "lucide-react",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ui/PackageTabs.tsx-@/components/ui/tabs",
+      "source": "src/components/ui/PackageTabs.tsx",
+      "target": "@/components/ui/tabs",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ui/PackageTabs.tsx-@/components/ui/button",
+      "source": "src/components/ui/PackageTabs.tsx",
+      "target": "@/components/ui/button",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ui/PackageTabs.tsx-@/lib/utils",
+      "source": "src/components/ui/PackageTabs.tsx",
+      "target": "@/lib/utils",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/ui/PackageTabs.tsx-@/hooks/use-package-manager",
+      "source": "src/components/ui/PackageTabs.tsx",
+      "target": "@/hooks/use-package-manager",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-next/link",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "next/link",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-lucide-react",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "lucide-react",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-../ui/Container",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "../ui/Container",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-../ThemeSwitch",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "../ThemeSwitch",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-../BoomBot/BoomBotToggle",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "../BoomBot/BoomBotToggle",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-./links",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "./links",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-./constants",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "./constants",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-../Avatar",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "../Avatar",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-../ui/dropdown-menu",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "../ui/dropdown-menu",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/Navbar/navbar.tsx-../ui/button",
+      "source": "src/components/Navbar/navbar.tsx",
+      "target": "../ui/button",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-./Config",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "./Config",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-next-themes",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "next-themes",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-next/dynamic",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "next/dynamic",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-next/link",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "next/link",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-react",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "react",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-../svgs/Github",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "../svgs/Github",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-../ui/button",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "../ui/button",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/components/GithubContribution/Github.tsx-../ui/Container",
+      "source": "src/components/GithubContribution/Github.tsx",
+      "target": "../ui/Container",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/lib/visitors.ts-crypto",
+      "source": "src/lib/visitors.ts",
+      "target": "crypto",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/lib/visitors.ts-mongoose",
+      "source": "src/lib/visitors.ts",
+      "target": "mongoose",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/lib/visitors.ts-next/cache",
+      "source": "src/lib/visitors.ts",
+      "target": "next/cache",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/lib/visitors.ts-@/lib/mongoose",
+      "source": "src/lib/visitors.ts",
+      "target": "@/lib/mongoose",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/Description/description",
+      "source": "src/app/page.tsx",
+      "target": "@/components/Description/description",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/Hero/Hero",
+      "source": "src/app/page.tsx",
+      "target": "@/components/Hero/Hero",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/Projects/Projects",
+      "source": "src/app/page.tsx",
+      "target": "@/components/Projects/Projects",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/Skills/Skills",
+      "source": "src/app/page.tsx",
+      "target": "@/components/Skills/Skills",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/Socials/Socials",
+      "source": "src/app/page.tsx",
+      "target": "@/components/Socials/Socials",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/ui/Container",
+      "source": "src/app/page.tsx",
+      "target": "@/components/ui/Container",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/GithubContribution/Github",
+      "source": "src/app/page.tsx",
+      "target": "@/components/GithubContribution/Github",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/ui/AnimatedSection",
+      "source": "src/app/page.tsx",
+      "target": "@/components/ui/AnimatedSection",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-@/components/Spotify/SpotifyNowPlaying",
+      "source": "src/app/page.tsx",
+      "target": "@/components/Spotify/SpotifyNowPlaying",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/page.tsx-next",
+      "source": "src/app/page.tsx",
+      "target": "next",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@vercel/analytics/next",
+      "source": "src/app/layout.tsx",
+      "target": "@vercel/analytics/next",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@vercel/speed-insights/next",
+      "source": "src/app/layout.tsx",
+      "target": "@vercel/speed-insights/next",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-next",
+      "source": "src/app/layout.tsx",
+      "target": "next",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-next/font/google",
+      "source": "src/app/layout.tsx",
+      "target": "next/font/google",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@/components/theme-provider",
+      "source": "src/app/layout.tsx",
+      "target": "@/components/theme-provider",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-lenis/react",
+      "source": "src/app/layout.tsx",
+      "target": "lenis/react",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@/components/Navbar/navbar",
+      "source": "src/app/layout.tsx",
+      "target": "@/components/Navbar/navbar",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@/components/Footer/Footer",
+      "source": "src/app/layout.tsx",
+      "target": "@/components/Footer/Footer",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@/components/ui/PageTransition",
+      "source": "src/app/layout.tsx",
+      "target": "@/components/ui/PageTransition",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@/components/BoomBot/BoomBotOverlayGate",
+      "source": "src/app/layout.tsx",
+      "target": "@/components/BoomBot/BoomBotOverlayGate",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    },
+    {
+      "id": "e-src/app/layout.tsx-@/components/BoomBot/boombot-provider",
+      "source": "src/app/layout.tsx",
+      "target": "@/components/BoomBot/boombot-provider",
+      "animated": true,
+      "style": {
+        "stroke": "#3b82f6",
+        "strokeWidth": 2
+      }
+    }
+  ]
+}
