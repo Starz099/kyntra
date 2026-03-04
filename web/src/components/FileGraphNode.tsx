@@ -2,6 +2,12 @@ import { memo } from "react";
 import { Handle, Position, type NodeProps } from "@xyflow/react";
 import type { FileNode } from "../types/graph";
 
+const SIDE_HANDLE_COUNT = 6;
+const sideHandlePercents = Array.from(
+  { length: SIDE_HANDLE_COUNT },
+  (_, index) => ((index + 1) / (SIDE_HANDLE_COUNT + 1)) * 100,
+);
+
 const summarizeWords = (text: string, maxWords: number) => {
   const words = text.trim().split(/\s+/);
   if (words.length <= maxWords) {
@@ -20,17 +26,27 @@ const FileGraphNode = ({ data, selected }: NodeProps<FileNode>) => {
         selected ? "border-blue-400/80" : "border-zinc-700/80"
       }`}
     >
-      <Handle
-        type="target"
-        position={Position.Left}
-        className="!h-2.5 !w-2.5 !bg-blue-400"
-      />
+      {sideHandlePercents.map((percent, index) => (
+        <Handle
+          key={`left-${index}`}
+          id={`left-${index}`}
+          type="target"
+          position={Position.Left}
+          className="h-2.5 w-2.5 opacity-0 pointer-events-none"
+          style={{ top: `${percent}%` }}
+        />
+      ))}
+      {sideHandlePercents.map((percent, index) => (
+        <Handle
+          key={`top-${index}`}
+          id={`top-${index}`}
+          type="target"
+          position={Position.Top}
+          className="h-2.5 w-2.5 opacity-0 pointer-events-none"
+          style={{ left: `${percent}%` }}
+        />
+      ))}
       <div className="flex items-center justify-between border-b border-zinc-700/80 px-3 py-2">
-        <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-amber-300/80" />
-          <span className="h-2.5 w-2.5 rounded-full bg-emerald-400/80" />
-        </div>
         <p className="max-w-52 truncate text-xs font-semibold text-zinc-300">
           {data.label}
         </p>
@@ -58,11 +74,26 @@ const FileGraphNode = ({ data, selected }: NodeProps<FileNode>) => {
           )}
         </div>
       </div>
-      <Handle
-        type="source"
-        position={Position.Right}
-        className="!h-2.5 !w-2.5 !bg-blue-400"
-      />
+      {sideHandlePercents.map((percent, index) => (
+        <Handle
+          key={`right-${index}`}
+          id={`right-${index}`}
+          type="source"
+          position={Position.Right}
+          className="h-2.5 w-2.5 opacity-0 pointer-events-none"
+          style={{ top: `${percent}%` }}
+        />
+      ))}
+      {sideHandlePercents.map((percent, index) => (
+        <Handle
+          key={`bottom-${index}`}
+          id={`bottom-${index}`}
+          type="source"
+          position={Position.Bottom}
+          className="h-2.5 w-2.5 opacity-0 pointer-events-none"
+          style={{ left: `${percent}%` }}
+        />
+      ))}
     </div>
   );
 };
