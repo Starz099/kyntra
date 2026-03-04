@@ -15,6 +15,7 @@ import {
   maskApiKey,
   setStoredApiKey,
 } from "./api-key-store.js";
+import { commitCommandAction } from "./commands/commit.js";
 
 const program = new Command();
 // If the user didn't type a command (e.g., just 'kyntra')
@@ -134,5 +135,10 @@ program
 
     console.log(`Key file: ${getApiKeyFilePath()}`);
   });
+
+program
+  .command("commit")
+  .description("Suggest a commit message for staged changes and commit")
+  .action(commitCommandAction);
 
 program.parse();
