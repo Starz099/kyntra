@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo, type MouseEvent } from "react";
+import { useCallback, useMemo, useState, type MouseEvent } from "react";
 import {
   Background,
   MiniMap,
@@ -43,6 +43,7 @@ const GraphCanvas = () => {
     (state) => state.setSelectedNodeId,
   );
   const { interactionMode, setInteractionMode } = useInteractionMode();
+  const [isDraggingNode, setIsDraggingNode] = useState(false);
 
   const initialNodes = useMemo(
     () =>
@@ -65,19 +66,15 @@ const GraphCanvas = () => {
   const [nodes, , onNodesChange] = useNodesState<FileNode>(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  useEffect(() => {
-    setEdges(buildStyledEdges(graphData.edges, nodes, DEFAULT_LAYOUT_SETTINGS));
-  }, [nodes, setEdges]);
-
-  useEffect(() => {
-    const timeout = window.setTimeout(() => {
-      persistNodeLayout(nodes);
-    }, 120);
-
-    return () => {
-      window.clearTimeout(timeout);
-    };
-  }, [nodes]);
+  const syncEdgesAndPersistLayout = useCallback(
+    (inputNodes: FileNode[]) => {
+      setEdges(
+        buildStyledEdges(graphData.edges, inputNodes, DEFAULT_LAYOUT_SETTINGS),
+      );
+      persistNodeLayout(inputNodes);
+    },
+    [setEdges],
+  );
 
   const nodeById = useMemo(
     () => new Map(nodes.map((node) => [node.id, node])),
@@ -106,6 +103,15 @@ const GraphCanvas = () => {
     setSelectedNodeId(null);
   }, [setSelectedNodeId]);
 
+  const handleNodeDragStop = useCallback(() => {
+    setIsDraggingNode(false);
+    syncEdgesAndPersistLayout(nodes);
+  }, [nodes, syncEdgesAndPersistLayout]);
+
+  const handleNodeDragStart = useCallback(() => {
+    setIsDraggingNode(true);
+  }, []);
+
   return (
     <div className="flex h-screen w-screen bg-zinc-950 text-zinc-100">
       <div className="relative h-full flex-1">
@@ -115,6 +121,8 @@ const GraphCanvas = () => {
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onNodeClick={handleNodeClick}
+          onNodeDragStart={handleNodeDragStart}
+          onNodeDragStop={handleNodeDragStop}
           onPaneClick={handlePaneClick}
           nodeTypes={nodeTypes}
           fitView
@@ -126,15 +134,17 @@ const GraphCanvas = () => {
           selectionMode={SelectionMode.Partial}
           selectionKeyCode="Shift"
           panOnDrag={interactionMode === "drag" ? true : [2]}
-          snapToGrid
+          snapToGrid={false}
           snapGrid={[20, 20]}
           onlyRenderVisibleElements
           elevateEdgesOnSelect
           proOptions={{ hideAttribution: true }}
-          defaultEdgeOptions={{ animated: true, type: "smoothstep" }}
+          defaultEdgeOptions={{ animated: false, type: "smoothstep" }}
         >
           <Background gap={24} size={1} />
-          <MiniMap pannable zoomable className="bg-zinc-900/80!" />
+          {!isDraggingNode ? (
+            <MiniMap pannable zoomable className="bg-zinc-900/80!" />
+          ) : null}
           <Panel
             position="top-left"
             className="rounded-md border border-zinc-800 bg-zinc-900/85 px-3 py-2 text-xs text-zinc-300"

@@ -357,6 +357,7 @@ export const buildStyledEdges = (
 ) => {
   return assignEdgeHandles(rawEdges, nodes, settings).map((edge) => ({
     ...edge,
+    animated: false,
     markerEnd: { type: MarkerType.ArrowClosed },
     style: { strokeWidth: 1.4, ...edge.style },
   }));
