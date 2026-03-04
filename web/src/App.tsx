@@ -1,4 +1,10 @@
-import { useCallback, useMemo, useState, type MouseEvent } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+  type MouseEvent,
+} from "react";
 import {
   Background,
   MiniMap,
@@ -11,7 +17,6 @@ import {
   type NodeTypes,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
-import rawData from "./test-data.json";
 import FileGraphNode from "./components/FileGraphNode";
 import GraphControlStack from "./components/GraphControlStack";
 import InspectorSidebar from "./components/InspectorSidebar";
@@ -35,9 +40,7 @@ const nodeTypes: NodeTypes = {
   fileNode: FileGraphNode,
 };
 
-const graphData = normalizeGraphData(rawData as GraphData);
-
-const GraphCanvas = () => {
+const GraphCanvas = ({ graphData }: { graphData: GraphData }) => {
   const selectedNodeId = useInspectorStore((state) => state.selectedNodeId);
   const setSelectedNodeId = useInspectorStore(
     (state) => state.setSelectedNodeId,
@@ -54,13 +57,13 @@ const GraphCanvas = () => {
           DEFAULT_LAYOUT_SETTINGS,
         ),
       ),
-    [],
+    [graphData.nodes, graphData.edges],
   );
 
   const initialEdges = useMemo(
     () =>
       buildStyledEdges(graphData.edges, initialNodes, DEFAULT_LAYOUT_SETTINGS),
-    [initialNodes],
+    [graphData.edges, initialNodes],
   );
 
   const [nodes, , onNodesChange] = useNodesState<FileNode>(initialNodes);
@@ -73,7 +76,7 @@ const GraphCanvas = () => {
       );
       persistNodeLayout(inputNodes);
     },
-    [setEdges],
+    [graphData.edges, setEdges],
   );
 
   const nodeById = useMemo(
@@ -168,9 +171,59 @@ const GraphCanvas = () => {
 };
 
 const App = () => {
+  const [graphData, setGraphData] = useState<GraphData | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+
+    const loadGraph = async () => {
+      try {
+        const response = await fetch("/api/graph", {
+          signal: controller.signal,
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load graph (${response.status})`);
+        }
+
+        const raw = (await response.json()) as GraphData;
+        setGraphData(normalizeGraphData(raw));
+      } catch (err) {
+        if (controller.signal.aborted) {
+          return;
+        }
+
+        setError(err instanceof Error ? err.message : "Failed to load graph");
+      }
+    };
+
+    void loadGraph();
+
+    return () => controller.abort();
+  }, []);
+
+  if (error) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center bg-zinc-950 text-zinc-100">
+        <p className="rounded-md border border-red-900 bg-red-950/40 px-4 py-2 text-sm text-red-200">
+          {error}
+        </p>
+      </div>
+    );
+  }
+
+  if (!graphData) {
+    return (
+      <div className="flex h-screen w-screen items-center justify-center bg-zinc-950 text-zinc-300">
+        Loading graph...
+      </div>
+    );
+  }
+
   return (
     <ReactFlowProvider>
-      <GraphCanvas />
+      <GraphCanvas graphData={graphData} />
     </ReactFlowProvider>
   );
 };
