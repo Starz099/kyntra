@@ -88,9 +88,9 @@ export const startServer = async () => {
       const repoContext = fs.readFileSync(tempFilePath, "utf-8");
 
       // LOGGING THE CONTEXT (as requested)
-      console.log("--- REPOMIX CONTEXT START ---");
-      console.log(repoContext);
-      console.log("--- REPOMIX CONTEXT END ---");
+      // console.log("--- REPOMIX CONTEXT START ---");
+      // console.log(repoContext);
+      // console.log("--- REPOMIX CONTEXT END ---");
 
       // CLEANUP: Delete the file as soon as it's in memory
       fs.unlinkSync(tempFilePath);

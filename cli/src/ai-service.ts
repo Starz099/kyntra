@@ -1,8 +1,21 @@
 import { GoogleGenAI } from "@google/genai";
+import { getStoredApiKey } from "./api-key-store.js";
 
-const ai = new GoogleGenAI({
-  apiKey: "",
-});
+function resolveApiKey(): string {
+  const storedKey = getStoredApiKey();
+  if (!storedKey) {
+    throw new Error(
+      "No API key configured. Use 'kyntra api-key:set <key>' or set GEMINI_API_KEY.",
+    );
+  }
+  return storedKey;
+}
+
+function createAIClient(): GoogleGenAI {
+  return new GoogleGenAI({
+    apiKey: resolveApiKey(),
+  });
+}
 
 // Define the response schema for our Graph
 const graphSchema = {
@@ -38,6 +51,7 @@ const graphSchema = {
 };
 
 export async function analyzeRepoWithAI(repoContext: string) {
+  const ai = createAIClient();
   const model = "gemini-3-flash-preview";
 
   const config = {
@@ -78,6 +92,6 @@ export async function analyzeRepoWithAI(repoContext: string) {
     return JSON.parse(result.text);
   } catch (error) {
     console.error("Gemini Analysis Failed:", error);
-    return { files: [] };
+    throw error;
   }
 }

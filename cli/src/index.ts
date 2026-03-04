@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 import { Command } from "commander";
-import { intro, outro, spinner } from "@clack/prompts";
-import path from "path";
-import dotenv from "dotenv";
+import { intro, spinner } from "@clack/prompts";
 import {
   clearGraphCache,
   deleteGraphCache,
@@ -10,9 +8,13 @@ import {
   graphCacheSize,
   listGraphCache,
 } from "./cache-store.js";
-dotenv.config();
-
-const API_BASE_URL = "http://localhost:3000";
+import {
+  clearStoredApiKey,
+  getApiKeyFilePath,
+  getStoredApiKey,
+  maskApiKey,
+  setStoredApiKey,
+} from "./api-key-store.js";
 
 const program = new Command();
 // If the user didn't type a command (e.g., just 'kyntra')
@@ -26,25 +28,12 @@ program
   .description("Visualize your codebase in 4D")
   .version("1.0.0");
 
-// Command 1: Setup
+// Run Server
 program
-  .command("init")
-  .description("Initialize Kyntra in the current directory")
-  .action(async () => {
-    intro("Initializing Kyntra...");
-    const s = spinner();
-    s.start("Creating configuration...");
-    // Add logic to create a .kyntrarc or local db here
-    s.stop("Kyntra initialized successfully!");
-    outro("Ready to soar. Run `kyntra sky` to visualize.");
-  });
-
-// Command 2: Run Server
-program
-  .command("sky")
+  .command("run")
   .description("Launch the Kyntra visualizer")
   .action(async () => {
-    intro("Launching Kyntra Sky...");
+    intro("Launching Kyntra ...");
     const { startServer } = await import("./server.js");
     await startServer(); // This will start Fastify and open the browser
   });
@@ -95,6 +84,55 @@ program
     } else {
       s.stop(`No cache entry found for key: ${key}`);
     }
+  });
+
+program
+  .command("api-key:set")
+  .description("Set and persist Gemini API key")
+  .argument("<key>", "Gemini API key")
+  .action((key: string) => {
+    const s = spinner();
+    s.start("Saving API key...");
+
+    try {
+      setStoredApiKey(key);
+      s.stop("API key saved.");
+      console.log(`Stored in: ${getApiKeyFilePath()}`);
+      console.log(`Key: ${maskApiKey(key)}`);
+    } catch (error) {
+      s.stop("Failed to save API key.");
+      console.error(error instanceof Error ? error.message : "Unknown error");
+      process.exitCode = 1;
+    }
+  });
+
+program
+  .command("api-key:show")
+  .description("Show persisted Gemini API key (masked)")
+  .action(() => {
+    const key = getStoredApiKey();
+    if (!key) {
+      console.log("No API key stored.");
+      console.log(`Expected file: ${getApiKeyFilePath()}`);
+      return;
+    }
+
+    console.log(`Stored in: ${getApiKeyFilePath()}`);
+    console.log(`Key: ${maskApiKey(key)}`);
+  });
+
+program
+  .command("api-key:clear")
+  .description("Delete persisted Gemini API key")
+  .action(() => {
+    const deleted = clearStoredApiKey();
+    if (deleted) {
+      console.log("Stored API key deleted.");
+    } else {
+      console.log("No stored API key found.");
+    }
+
+    console.log(`Key file: ${getApiKeyFilePath()}`);
   });
 
 program.parse();
