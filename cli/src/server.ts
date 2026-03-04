@@ -137,9 +137,9 @@ export const startServer = async () => {
   });
 
   try {
-    await fastify.listen({ port: 3000, host: "0.0.0.0" });
-    console.log("Kyntra running at http://localhost:3000");
-    open("http://localhost:3000").catch((err) => {
+    await fastify.listen({ port: 6767, host: "0.0.0.0" });
+    console.log("Kyntra running at http://localhost:6767");
+    open("http://localhost:6767").catch((err) => {
       console.warn("Failed to open browser automatically:", err);
     });
   } catch (err) {

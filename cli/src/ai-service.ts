@@ -97,7 +97,7 @@ export async function analyzeRepoWithAI(repoContext: string) {
 }
 
 function sanitizeCommitMessage(message: string): string {
-  return (
+  const firstLine =
     message
       .replace(/^```[\s\S]*?\n/, "")
       .replace(/```$/, "")
@@ -105,18 +105,62 @@ function sanitizeCommitMessage(message: string): string {
       .split("\n")
       .map((line) => line.trim())
       .find(Boolean)
-      ?.trim() ?? "chore: update staged changes"
-  );
+      ?.trim() ?? "chore: update staged changes";
+
+  const normalized = firstLine.replace(/^\w+\([^)]+\):\s*/, (match) => {
+    const typeOnly = match.split("(")[0];
+    return `${typeOnly}: `;
+  });
+
+  return normalized.trim();
 }
 
-export async function suggestCommitMessageFromDiff(stagedDiff: string) {
+interface CommitPromptInput {
+  files: string[];
+  summary: string;
+  snippets?: string;
+}
+
+function buildCommitPrompt(input: CommitPromptInput): string {
+  const fileList =
+    input.files.map((file) => `- ${file}`).join("\n") || "- (none)";
+
+  return [
+    "You are generating a single git commit subject line.",
+    "",
+    "Task:",
+    "Write ONE conventional-commit message for the staged changes.",
+    "",
+    "Rules:",
+    "- Output exactly one line and nothing else",
+    "- Format: type: subject (NO scope)",
+    "- Use imperative mood and present tense",
+    "- Mention the main component or area changed",
+    "- Do not use code fences, quotes, bullets, or explanations",
+    "",
+    "Type guidance:",
+    "- feat: new user-facing behavior",
+    "- fix: bug fix",
+    "- refactor: structural/internal code improvements",
+    "- docs: documentation only",
+    "- test: tests only",
+    "- chore: tooling/config/deps/maintenance",
+    "",
+    "Staged files:",
+    fileList,
+    "",
+    "Change summary:",
+    input.summary,
+    input.snippets ? `\nCode context:\n${input.snippets}` : "",
+    "",
+    "Return only the commit message line.",
+  ].join("\n");
+}
+
+export async function suggestCommitMessage(input: CommitPromptInput) {
   const ai = createAIClient();
   const model = "gemini-2.5-flash";
-
-  const trimmedDiff =
-    stagedDiff.length > 24000
-      ? `${stagedDiff.slice(0, 24000)}\n\n[diff truncated]`
-      : stagedDiff;
+  const prompt = buildCommitPrompt(input);
 
   const result = await ai.models.generateContent({
     model,
@@ -125,14 +169,7 @@ export async function suggestCommitMessageFromDiff(stagedDiff: string) {
         role: "user",
         parts: [
           {
-            text: [
-              "You are generating a git commit message.",
-              "Return exactly one concise conventional-commit style subject line.",
-              "No code fences, no quotes, no body, max 72 chars.",
-              "Use imperative mood and reflect the staged diff.",
-              "",
-              trimmedDiff,
-            ].join("\n"),
+            text: prompt,
           },
         ],
       },

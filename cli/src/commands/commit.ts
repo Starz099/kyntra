@@ -1,11 +1,12 @@
 import { cancel, isCancel, select, spinner, text } from "@clack/prompts";
 import {
+  buildStagedChangeSummary,
+  buildStagedDiffSnippets,
   commitStagedChanges,
   findGitRoot,
-  getStagedDiff,
   getStagedFiles,
 } from "../git.js";
-import { suggestCommitMessageFromDiff } from "../ai-service.js";
+import { suggestCommitMessage } from "../ai-service.js";
 
 export async function commitCommandAction() {
   const gitRoot = findGitRoot(process.cwd());
@@ -24,13 +25,19 @@ export async function commitCommandAction() {
     return;
   }
 
-  const diff = getStagedDiff(gitRoot);
+  const summary = buildStagedChangeSummary(gitRoot, stagedFiles);
+  const snippets = buildStagedDiffSnippets(gitRoot, stagedFiles, 30, 3000);
+
   const s = spinner();
   s.start("Generating commit message suggestion...");
 
   let suggestion = "";
   try {
-    suggestion = await suggestCommitMessageFromDiff(diff);
+    suggestion = await suggestCommitMessage({
+      files: stagedFiles,
+      summary,
+      snippets,
+    });
     s.stop("Commit message suggestion ready.");
   } catch (error) {
     s.stop("Failed to generate commit message.");
