@@ -9,11 +9,15 @@
   ],
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "prepublishOnly": "pnpm run build",
+    "clean": "node -e \"require('node:fs').rmSync('dist',{ recursive: true, force: true })\"",
+    "build": "pnpm run clean && tsc",
+    "build:web": "pnpm --dir ../web run build",
+    "sync:web": "node ./scripts/sync-web-dist.mjs",
+    "build:package": "pnpm run build:web && pnpm run sync:web && pnpm run build",
+    "prepublishOnly": "pnpm run build:package",
     "start": "node dist/index.js",
     "dev": "pnpm run build && pnpm run start"
   },
@@ -27,15 +31,12 @@
     "@fastify/static": "^9.0.0",
     "@google/genai": "^1.43.0",
     "commander": "^14.0.3",
-    "dotenv": "^17.3.1",
     "fastify": "^5.7.4",
-    "mime": "^4.1.0",
     "open": "^11.0.0",
     "repomix": "^1.12.0"
   },
   "devDependencies": {
     "@types/node": "^25.3.3",
-    "tsdown": "0.21.0-beta.2",
     "typescript": "^5.9.3"
   }
 }

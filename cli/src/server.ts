@@ -3,10 +3,10 @@ import fastifyStatic from "@fastify/static";
 import path from "path";
 import fs from "fs";
 import { fileURLToPath } from "url";
-import { execSync } from "child_process";
 import open from "open"; // Uncomment if you want to auto-open
 import { findGitRoot } from "./git.js";
 import { analyzeRepoWithAI } from "./ai-service.js";
+import { generateAIContext } from "./repomix.js";
 import {
   clearGraphCache,
   deleteGraphCache,
@@ -19,10 +19,23 @@ import {
 export const startServer = async () => {
   const fastify = Fastify();
   const __dirname = path.dirname(fileURLToPath(import.meta.url));
-  const reactDistPath = path.join(__dirname, "../../web/dist");
+
+  const candidateStaticRoots = [
+    path.join(__dirname, "../public"),
+    path.join(__dirname, "../../web/dist"),
+  ];
+  const staticRoot = candidateStaticRoots.find((candidate) =>
+    fs.existsSync(path.join(candidate, "index.html")),
+  );
+
+  if (!staticRoot) {
+    throw new Error(
+      "No frontend build found. Run 'pnpm --dir ../web build' and copy to cli/public before starting.",
+    );
+  }
 
   await fastify.register(fastifyStatic, {
-    root: reactDistPath,
+    root: staticRoot,
     prefix: "/",
     wildcard: true,
   });
@@ -68,33 +81,18 @@ export const startServer = async () => {
       }
     }
 
-    // Temporary file name for this specific request
-    const tempFileName = `repomix-ctx-${Date.now()}.xml`;
-    const tempFilePath = path.join(gitRoot, tempFileName);
-
     try {
-      console.log("Generating repository context via npx repomix...");
+      console.log("Generating repository context via repomix...");
+      const repoContext = await generateAIContext(gitRoot);
 
-      // Execute the command: -y skips prompts, --style xml sets format, --compress uses tree-sitter
-      execSync(
-        `npx -y repomix --style xml --output ${tempFileName} --compress --include "src/**/*"`,
-        { cwd: gitRoot, stdio: "inherit" },
-      );
-
-      if (!fs.existsSync(tempFilePath)) {
-        throw new Error("Repomix failed to create context file.");
+      if (!repoContext.trim()) {
+        throw new Error("Repomix failed to generate context.");
       }
-
-      const repoContext = fs.readFileSync(tempFilePath, "utf-8");
 
       // LOGGING THE CONTEXT (as requested)
       // console.log("--- REPOMIX CONTEXT START ---");
       // console.log(repoContext);
       // console.log("--- REPOMIX CONTEXT END ---");
-
-      // CLEANUP: Delete the file as soon as it's in memory
-      fs.unlinkSync(tempFilePath);
-      console.log("Temporary context file deleted.");
 
       console.log("Sending context to Gemini 3 Flash (Thinking Mode)...");
       const aiData = await analyzeRepoWithAI(repoContext);
@@ -129,9 +127,6 @@ export const startServer = async () => {
       console.log(`Graph built: ${nodes.length} nodes, ${edges.length} edges.`);
       return graphPayload;
     } catch (err) {
-      // Ensure file is deleted even if the process crashes mid-way
-      if (fs.existsSync(tempFilePath)) fs.unlinkSync(tempFilePath);
-
       console.error("Error generating graph:", err);
       return reply.status(500).send({ error: "Failed to generate graph" });
     }
