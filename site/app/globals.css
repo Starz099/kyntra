@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+:root {
+  --kyntra-cream: #fffaf0;
+  --kyntra-sand: #ffe7bd;
+  --kyntra-coral: #ff8459;
+  --kyntra-ink: #0f172a;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  font-family: var(--font-display), "Segoe UI", sans-serif;
+  background: var(--kyntra-cream);
+  color: var(--kyntra-ink);
+}
+
+* {
+  border-radius: 0 !important;
+}
+
+code,
+pre,
+.font-mono {
+  font-family: var(--font-mono), "SFMono-Regular", monospace;
+}
+
+.kyntra-shell {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.kyntra-bg {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background:
+    radial-gradient(
+      circle at 18% 20%,
+      rgba(255, 132, 89, 0.2),
+      transparent 42%
+    ),
+    radial-gradient(
+      circle at 85% 10%,
+      rgba(56, 189, 248, 0.18),
+      transparent 35%
+    ),
+    linear-gradient(180deg, var(--kyntra-cream), #fffdf8 40%, #fff8ee);
+}
+
+.dotted-primary {
+  border-style: dotted;
+  border-width: 1px;
+  border-color: #b45309;
+  box-shadow: inset 0 0 0 1px rgba(245, 158, 11, 0.24);
+}
+
+.dotted-secondary {
+  border-style: dotted;
+  border-width: 1px;
+  border-color: #64748b;
+  box-shadow: inset 0 0 0 1px rgba(100, 116, 139, 0.2);
+}
+
+.terminal-cursor {
+  margin-left: 2px;
+  animation: cursor-blink 900ms step-end infinite;
+}
+
+@keyframes cursor-blink {
+  0%,
+  45% {
+    opacity: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
