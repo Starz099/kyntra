@@ -7,8 +7,8 @@
     "dist",
     "public"
   ],
-  "version": "1.1.0",
-  "description": "",
+  "version": "1.1.1",
+  "description": "AI-assisted codebase graph visualizer and commit workflow CLI",
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -21,7 +21,17 @@
     "start": "node dist/index.js",
     "dev": "pnpm run build && pnpm run start"
   },
-  "keywords": [],
+  "keywords": [
+    "cli",
+    "codebase",
+    "dependency-graph",
+    "architecture",
+    "git",
+    "ai",
+    "github",
+    "commit",
+    "gemini"
+  ],
   "author": "",
   "type": "module",
   "license": "ISC",
