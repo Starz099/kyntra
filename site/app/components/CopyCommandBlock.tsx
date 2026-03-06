@@ -27,10 +27,10 @@ export default function CopyCommandBlock({
     <button
       type="button"
       onClick={copyCommand}
-      className="dotted-secondary block w-full border bg-white p-3 text-left transition hover:bg-slate-50"
+      className="dotted-secondary block w-full border bg-white p-3 text-left transition cursor-pointer hover:bg-slate-50"
       title="Click to copy"
     >
-      <div className="flex items-start justify-between gap-3">
+      <div className="flex items-start justify-between gap-3 ">
         <code className="font-mono text-sm text-slate-900">{command}</code>
         <span className="font-mono text-[11px] uppercase tracking-wide text-slate-500">
           {copied ? "copied" : "click to copy"}
