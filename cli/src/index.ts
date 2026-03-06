@@ -16,6 +16,7 @@ import {
   setStoredApiKey,
 } from "./api-key-store.js";
 import { commitCommandAction } from "./commands/commit.js";
+import { branchCommandAction } from "./commands/branch.js";
 
 const program = new Command();
 // If the user didn't type a command (e.g., just 'kyntra')
@@ -140,5 +141,13 @@ program
   .command("commit")
   .description("Suggest a commit message for staged changes and commit")
   .action(commitCommandAction);
+
+program
+  .command("branch")
+  .description(
+    "Suggest and optionally apply a branch name based on commits and diff",
+  )
+  .argument("[baseBranch]", "Base branch to compare against (example: main)")
+  .action(branchCommandAction);
 
 program.parse();

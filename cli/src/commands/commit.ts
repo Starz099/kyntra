@@ -1,5 +1,6 @@
 import { cancel, isCancel, select, spinner, text } from "@clack/prompts";
 import {
+  buildRepoConventionsContext,
   buildStagedChangeSummary,
   buildStagedDiffSnippets,
   commitStagedChanges,
@@ -27,6 +28,7 @@ export async function commitCommandAction() {
 
   const summary = buildStagedChangeSummary(gitRoot, stagedFiles);
   const snippets = buildStagedDiffSnippets(gitRoot, stagedFiles, 30, 3000);
+  const repoConventions = buildRepoConventionsContext(gitRoot, 20, 20, 2500);
 
   const s = spinner();
   s.start("Generating commit message suggestion...");
@@ -37,6 +39,7 @@ export async function commitCommandAction() {
       files: stagedFiles,
       summary,
       snippets,
+      repoConventions,
     });
     s.stop("Commit message suggestion ready.");
   } catch (error) {

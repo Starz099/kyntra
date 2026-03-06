@@ -119,7 +119,7 @@ export default async function HomePage() {
 
       <footer className="mx-auto flex w-full max-w-6xl flex-wrap items-center justify-between gap-3 px-6 py-4 text-sm text-slate-700">
         <p>
-          made with love by{" "}
+          made by{" "}
           <a
             href="https://starzz.dev"
             className="underline decoration-dotted underline-offset-4"
