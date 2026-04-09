@@ -164,7 +164,7 @@ function buildCommitPrompt(input: CommitPromptInput): string {
 
 export async function suggestCommitMessage(input: CommitPromptInput) {
   const ai = createAIClient();
-  const model = "gemini-2.5-flash";
+  const model = "gemini-3-flash-preview";
   const prompt = buildCommitPrompt(input);
 
   const result = await ai.models.generateContent({
